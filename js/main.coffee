@@ -74,8 +74,9 @@ class Main
 		@process = document.getElementById('process')
 
 
-		@easing = TWEEN.Easing.Quadratic.Out
-		@animate = @bind @animate, @
+		@easingChars 	=  TWEEN.Easing.Elastic.Out
+		@easing 			= TWEEN.Easing.Quadratic.Out
+		@animate 			= @bind @animate, @
 
 		@l1 = new Line id: 'l1'
 		@l2 = new Line id: 'l2'
@@ -136,7 +137,7 @@ class Main
 				setTimeout =>
 					tween = new TWEEN.Tween(start)
 										.to(end, @settings.transition)
-										.easing(@easing)
+										.easing(@easingChars)
 										.onUpdate(->
 											curve.el.setAttribute 'd', "M#{@startX}, #{@startY} c#{@curve0}, #{@curve1}, #{@curve2}, #{@curve3}, #{@endX}, #{@endY}"
 										).yoyo(true).delay(@settings.delay).repeat(999999999999999999999)
@@ -169,7 +170,7 @@ class Main
 				setTimeout =>
 					tween = new TWEEN.Tween({ x1: line.points[0].x, y1: line.points[0].y, x2: line.points[1].x, y2: line.points[1].y })
 											.to({ x1: line.pointsEnd[0].x, y1: line.pointsEnd[0].y, x2: line.pointsEnd[1].x, y2: line.pointsEnd[1].y }, @settings.transition)
-											.easing(@easing)
+											.easing(@easingChars)
 											.onUpdate(->
 												line.el.setAttribute 'x1', @x1
 												line.el.setAttribute 'y1', @y1

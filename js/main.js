@@ -108,6 +108,7 @@
       this.currentProgress = 0;
       this.rainbow = document.getElementById('rainbow');
       this.process = document.getElementById('process');
+      this.easingChars = TWEEN.Easing.Elastic.Out;
       this.easing = TWEEN.Easing.Quadratic.Out;
       this.animate = this.bind(this.animate, this);
       this.l1 = new Line({
@@ -229,7 +230,7 @@
           return setTimeout(function() {
             var tween;
 
-            return tween = new TWEEN.Tween(start).to(end, _this.settings.transition).easing(_this.easing).onUpdate(function() {
+            return tween = new TWEEN.Tween(start).to(end, _this.settings.transition).easing(_this.easingChars).onUpdate(function() {
               return curve.el.setAttribute('d', "M" + this.startX + ", " + this.startY + " c" + this.curve0 + ", " + this.curve1 + ", " + this.curve2 + ", " + this.curve3 + ", " + this.endX + ", " + this.endY);
             }).yoyo(true).delay(_this.settings.delay).repeat(999999999999999999999).start();
           }, i * _this.settings.particleDelay);
@@ -285,7 +286,7 @@
               y1: line.pointsEnd[0].y,
               x2: line.pointsEnd[1].x,
               y2: line.pointsEnd[1].y
-            }, _this.settings.transition).easing(_this.easing).onUpdate(function() {
+            }, _this.settings.transition).easing(_this.easingChars).onUpdate(function() {
               line.el.setAttribute('x1', this.x1);
               line.el.setAttribute('y1', this.y1);
               line.el.setAttribute('x2', this.x2);
